@@ -1,4 +1,3 @@
-import imp
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets as qtw
 
@@ -9,7 +8,7 @@ class MainWindow(qtw.QMainWindow):
         super().__init__()
         self.setWindowTitle("Habit tracker")
     
-    def set_app_ui(self):
+    def setup_ui(self):
         self.resize(500,500)
         user_menu = self.menuBar()
         set_user_menu = qtw.QMenu("&User", self)
@@ -18,14 +17,14 @@ class MainWindow(qtw.QMainWindow):
         self.setMenuBar(user_menu)
 
     def add_users(self, user_menu):
-        for user in get_users():
+        for user in get_users(self):
             user_menu.addAction("&{}".format(user["username"]))
         return user_menu
 
 
 app = qtw.QApplication([])
 app_window = MainWindow()
-app_window.set_app_ui()
+app_window.setup_ui()
 app_window.show()
 
 app.exec_()

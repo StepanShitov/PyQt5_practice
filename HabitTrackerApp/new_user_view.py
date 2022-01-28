@@ -1,5 +1,14 @@
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets as qtw
 
-class NewUserindow(qtw.QMainWindow):
-    
+def create_new_user():
+    class NewUserWindow(qtw.QMainWindow):
+        def __init__(self):
+            super().__init__()
+            self.setWindowTitle("Create new user")
+
+    new_user_app = qtw.QApplication([])
+    new_user_app_window = NewUserWindow()
+    new_user_app_window.show()
+
+    new_user_app.exec_()
