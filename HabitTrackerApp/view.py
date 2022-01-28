@@ -19,7 +19,7 @@ class MainWindow(qtw.QMainWindow):
 
     def add_users(self, user_menu):
         for user in get_users():
-            user_menu.addAction(f"&{user}")
+            user_menu.addAction("&{}".format(user["username"]))
         return user_menu
 
 
