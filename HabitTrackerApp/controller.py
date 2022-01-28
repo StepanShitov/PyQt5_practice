@@ -1,3 +1,9 @@
+from distutils.command.upload import upload
+import model
+
 def get_users():
-    app_users = ["slava", "yura"]
-    return app_users
+    users = model.upload_users()
+    if users == "File not found":
+        return ["a", "b"]
+    else:
+        return users
