@@ -9,7 +9,7 @@ class MainWindow(qtw.QMainWindow):
         self.setWindowTitle("Habit tracker")
     
     def setup_ui(self):
-        self.resize(500,500)
+        self.setFixedSize(500,500)
         user_menu = self.menuBar()
         set_user_menu = qtw.QMenu("&User", self)
         set_user_menu = self.add_users(set_user_menu)     
@@ -18,6 +18,7 @@ class MainWindow(qtw.QMainWindow):
 
     def add_users(self, user_menu):
         for user in get_users(self):
+            print(user)
             user_menu.addAction("&{}".format(user["username"]))
         return user_menu
 

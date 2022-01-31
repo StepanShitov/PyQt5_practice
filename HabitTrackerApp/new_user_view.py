@@ -6,6 +6,7 @@ def create_new_user():
         def __init__(self):
             super().__init__()
             self.setWindowTitle("Create new user")
+            self.setFixedSize(200,200)
 
     new_user_app = qtw.QApplication([])
     new_user_app_window = NewUserWindow()
