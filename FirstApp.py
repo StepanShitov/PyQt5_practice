@@ -1,35 +1,26 @@
-from PyQt5 import QtWidgets as qtw
-from PyQt5.QtCore import QRect, Qt, center
-from PyQt5.QtWidgets import QApplication as qapp, QLabel, QLineEdit, QPushButton, QVBoxLayout
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QLabel, QWidget, QCheckBox, QVBoxLayout, QAction, QApplication, QLabel, QMainWindow, QMenu
 
-class MainWindow(qtw.QWidget):
+
+class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setMainScreen()
-        
-        self.show()
-    
+        layout = QVBoxLayout()
+        checkB = QCheckBox()
+        checkB.setCheckState(Qt.Checked)
+        layout.addWidget(checkB)
+        widget = QWidget()
+        widget.setLayout(layout)
+        self.setCentralWidget(widget)
+        label = QLabel("hey")
+        layout.addWidget(label)
 
-    def setMainScreen(self):
-        self.setWindowTitle("First app")
-        self.setGeometry(100, 100, 200, 200)
+        print("Hello")
 
-        self.setLayout(QVBoxLayout())
-        self.name_label = QLabel("Hey")
-        self.name_label.setAlignment(Qt.AlignCenter)
-        self.layout().addWidget(self.name_label)
-        self.name_field = QLineEdit("Enter your name here")
-        self.layout().addWidget(self.name_field)
-        self.button = QPushButton("Say smth")
-        self.layout().addWidget(self.button)   
-        self.button.clicked.connect(self.test_function)
 
-    def test_function(self):
-        print("hello world")
-        self.name_label.clear()
-        self.name_label.setText("{}, {}".format(self.name_label.text(), self.name_field.text()))
+app = QApplication([])
 
-app = qapp([])
-mw = MainWindow()
+window = MainWindow()
+window.show()
 
-app.exec_()
+app.exec()
