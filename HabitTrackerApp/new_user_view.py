@@ -1,15 +1,15 @@
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets as qtw
 
-def create_new_user():
-    class NewUserWindow(qtw.QMainWindow):
-        def __init__(self):
-            super().__init__()
-            self.setWindowTitle("Create new user")
-            self.setFixedSize(200,200)
+class NewUserDialog(qtw.QDialog):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.setWindowTitle("Adding new user")
+        self.setFixedSize(250, 250)
+        self.setup_ui()
 
-    new_user_app = qtw.QApplication([])
-    new_user_app_window = NewUserWindow()
-    new_user_app_window.show()
-
-    new_user_app.exec_()
+    def setup_ui(self):
+        app_layout = qtw. QVBoxLayout()
+        name_label = qtw.QLabel("Enter your name here")
+        name_input = qtw.QTextEdit()
+        app_layout.addWidget(name_label)
