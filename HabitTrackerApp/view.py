@@ -1,4 +1,3 @@
-import imp
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets as qtw
 
@@ -12,13 +11,13 @@ class MainWindow(qtw.QMainWindow):
     
     def setup_ui(self):
         self.setFixedSize(500,500)
-        app_layout = qtw.QGridLayout()
-        test_button = qtw.QPushButton("Push me")
-        test_button.clicked.connect(self.test)
-        app_layout.addWidget(test_button)
-        main_window_widgets = qtw.QWidget()
-        main_window_widgets.setLayout(app_layout)
-        self.setCentralWidget(main_window_widgets)
+        self.app_layout = qtw.QGridLayout()
+        self.test_button = qtw.QPushButton("Push me")
+        self.test_button.clicked.connect(self.test)
+        self.app_layout.addWidget(self.test_button)
+        self.main_window_widgets = qtw.QWidget()
+        self.main_window_widgets.setLayout(self.app_layout)
+        self.setCentralWidget(self.main_window_widgets)
 
     def test(self, s):
         print("hey")
