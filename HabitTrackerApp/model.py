@@ -11,3 +11,6 @@ def upload_users():
             return users
     except OSError:
         return "File not found"
+
+def create_new_user(user_name):
+    print(user_name)
