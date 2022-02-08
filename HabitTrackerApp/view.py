@@ -32,13 +32,11 @@ class MainWindow(qtw.QMainWindow):
         if len(users) > 0:
             for user in users:
                 user_name = user["username"]
-                user_action = qtw.QAction(f"&{user_name}")
-                # user_action.triggered.connect(
-                #     lambda name=user_name: self.get_user_stats(name))
-                user_action.triggered.connect(self.get_user_stats)
-                user_menu.addAction("&{}".format(user["username"]))
+                user_action = qtw.QAction(f"&{user_name}", self)
+                user_action.triggered.connect(lambda state, val=user_name: self.get_user_stats(val))
+                user_menu.addAction(user_action)
             return user_menu
-        else:
+        else:   
             self.create_new_user()
         
     def create_new_user(self):
@@ -46,8 +44,9 @@ class MainWindow(qtw.QMainWindow):
         if new_user_window.exec_() == 0:
             sys.exit()
              
-    def get_user_stats():
-        print("hey")
+    def get_user_stats(self, user_name):
+        print(user_name)
+        print(f"hey {user_name}")
 
 app = qtw.QApplication([])
 app_window = MainWindow()
