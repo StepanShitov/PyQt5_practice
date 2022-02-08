@@ -1,5 +1,6 @@
 from PyQt5 import QtGui as qtg
 from PyQt5 import QtWidgets as qtw
+from urllib3 import Retry
 from controller import create_new_user_controller
 
 class NewUserDialog(qtw.QDialog):
@@ -51,6 +52,5 @@ class NewUserDialog(qtw.QDialog):
         empty_name_msg.setIcon(qtw.QMessageBox.Warning)
         empty_name_msg.setStandardButtons(qtw.QMessageBox.Retry)
         empty_name_msg.exec_()
-
     
     

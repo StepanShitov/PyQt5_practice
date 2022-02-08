@@ -29,10 +29,12 @@ class MainWindow(qtw.QMainWindow):
 
     def add_users(self, user_menu):
         users = get_users_controller()
-        print(len(users))
         if len(users) > 0:
             for user in users:
-                user_action = qtw.QAction("&{}".format(user["username"]))
+                user_name = user["username"]
+                user_action = qtw.QAction(f"&{user_name}")
+                # user_action.triggered.connect(
+                #     lambda name=user_name: self.get_user_stats(name))
                 user_action.triggered.connect(self.get_user_stats)
                 user_menu.addAction("&{}".format(user["username"]))
             return user_menu
@@ -43,7 +45,9 @@ class MainWindow(qtw.QMainWindow):
         new_user_window = NewUserDialog(self)
         if new_user_window.exec_() == 0:
             sys.exit()
-    # def get_user_stats(self, e):
+             
+    def get_user_stats():
+        print("hey")
 
 app = qtw.QApplication([])
 app_window = MainWindow()
