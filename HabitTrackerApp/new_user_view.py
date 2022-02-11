@@ -1,6 +1,5 @@
 from PyQt5 import QtGui as qtg
 from PyQt5 import QtWidgets as qtw
-from urllib3 import Retry
 from controller import create_new_user_controller
 
 class NewUserDialog(qtw.QDialog):
@@ -41,14 +40,15 @@ class NewUserDialog(qtw.QDialog):
     def add_new_user(self):
         user_name = self.name_input.toPlainText()
         if len(user_name) > 0:
-            create_new_user_controller(user_name)
+            if len(create_new_user_controller(user_name)) > 0:
+                self.show_error_dialog("User already exists")
         else:
-            self.show_empty_name_dialog()
+            self.show_error_dialog("Name field is empty")
     
-    def show_empty_name_dialog(self):
+    def show_error_dialog(self, message):
         empty_name_msg = qtw.QMessageBox(self)
         empty_name_msg.setWindowTitle("Warning")
-        empty_name_msg.setText("Name field is empty")
+        empty_name_msg.setText(message)
         empty_name_msg.setIcon(qtw.QMessageBox.Warning)
         empty_name_msg.setStandardButtons(qtw.QMessageBox.Retry)
         empty_name_msg.exec_()

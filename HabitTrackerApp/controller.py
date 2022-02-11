@@ -8,4 +8,7 @@ def get_users_controller():
         return users
 
 def create_new_user_controller(user_name):
-    model.create_new_user(user_name)
+    return (model.create_new_user(user_name))
+
+def get_number_of_users_controller():
+    return (model.get_number_of_users())

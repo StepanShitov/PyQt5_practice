@@ -3,7 +3,7 @@ from PyQt5 import QtGui
 from PyQt5 import QtWidgets as qtw
 
 from new_user_view import NewUserDialog
-from controller import get_users_controller
+from controller import get_users_controller, get_number_of_users_controller
 
 class MainWindow(qtw.QMainWindow):
     def __init__(self):
@@ -45,11 +45,11 @@ class MainWindow(qtw.QMainWindow):
         
     def create_new_user(self):
         new_user_window = NewUserDialog(self)
-        if new_user_window.exec_() == 0:
+        if new_user_window.exec_() == 0 and get_number_of_users_controller() > 0:
             sys.exit()
              
     def get_user_stats(self, user_name):
-        print(f"Gettig user info for {user_name}")
+        print(f"Getting user info for {user_name}")
 
 app = qtw.QApplication([])
 app_window = MainWindow()
