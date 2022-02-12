@@ -42,6 +42,8 @@ class NewUserDialog(qtw.QDialog):
         if len(user_name) > 0:
             if len(create_new_user_controller(user_name)) > 0:
                 self.show_error_dialog("User already exists")
+            else:
+                self.close()
         else:
             self.show_error_dialog("Name field is empty")
     

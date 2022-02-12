@@ -1,3 +1,4 @@
+from hashlib import new
 import sys
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets as qtw
@@ -13,22 +14,19 @@ class MainWindow(qtw.QMainWindow):
     def setup_ui(self):
         self.setFixedSize(500,500)
         self.app_layout = qtw.QGridLayout()
+
         self.test_button = qtw.QPushButton("Push me")
+
         self.app_layout.addWidget(self.test_button)
         self.main_window_widgets = qtw.QWidget()
         self.main_window_widgets.setLayout(self.app_layout)
         self.setCentralWidget(self.main_window_widgets)
 
     def setup_user_menu(self):
-        user_menu = self.menuBar()
-        set_user_menu = qtw.QMenu("&User", self)
-        set_user_menu = self.add_users(set_user_menu)   
-        register_new_user_action = qtw.QAction("&New user...", self)
-        register_new_user_action.triggered.connect(self.create_new_user)
-        set_user_menu.addAction(register_new_user_action)
-        if set_user_menu != None:
-            user_menu.addMenu(set_user_menu)
-        self.setMenuBar(user_menu)
+        self.user_menu = self.menuBar()
+        self.set_user_menu = qtw.QMenu("&User", self)
+        self.update_users_list()
+        self.setMenuBar(self.user_menu)
 
     def add_users(self, user_menu):
         users = get_users_controller()
@@ -42,12 +40,24 @@ class MainWindow(qtw.QMainWindow):
             return user_menu
         else:   
             self.create_new_user()
+
+    def update_users_list(self):
+        self.set_user_menu = self.add_users(self.set_user_menu)
+        register_new_user_action = qtw.QAction("&New user...", self)
+        register_new_user_action.triggered.connect(self.create_new_user)
+        self.set_user_menu.addAction(register_new_user_action)
+        if self.set_user_menu != None:
+            self.user_menu.addMenu(self.set_user_menu)
         
     def create_new_user(self):
         new_user_window = NewUserDialog(self)
-        if new_user_window.exec_() == 0 and get_number_of_users_controller() > 0:
-            sys.exit()
-             
+        if (new_user_window.exec_() == 0):
+            if(get_number_of_users_controller() == 0):
+                sys.exit()
+            elif (get_number_of_users_controller() > 0):
+                self.set_user_menu.clear()
+                self.update_users_list()
+
     def get_user_stats(self, user_name):
         print(f"Getting user info for {user_name}")
 
