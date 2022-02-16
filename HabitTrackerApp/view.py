@@ -1,7 +1,6 @@
-from hashlib import new
-import sys
-from PyQt5 import QtGui
+from PyQt5 import QtGui as qtg
 from PyQt5 import QtWidgets as qtw
+from PyQt5 import QtCore as qtc
 
 from new_user_view import NewUserDialog
 from controller import get_users_controller, get_number_of_users_controller
@@ -13,11 +12,37 @@ class MainWindow(qtw.QMainWindow):
     
     def setup_ui(self):
         self.setFixedSize(500,500)
-        self.app_layout = qtw.QGridLayout()
+        #Working on main window widgets location
+        self.app_layout = qtw.QVBoxLayout()
+        self.header_layout = qtw.QHBoxLayout()
+        self.watch_and_spend_points_layout = qtw.QVBoxLayout()
+        # self.watch_and_spend_points_layout.addLayout(self.view_points_layout)
+        # self.header_layout.addLayout(self.watch_and_spend_points_layout)
+        # self.app_layout.addLayout(self.header_layout)
+        #Main window widgets:
+        self.add_habit_btn = qtw.QPushButton("Add new habit")
+        self.add_habit_btn.setFixedHeight(23)
+        self.header_layout.addWidget(self.add_habit_btn)
+        
+        self.points_label = qtw.QLabel("Points")
+        self.spend_points_btn = qtw.QPushButton("Get additional day-off")
+        self.spend_points_btn.setFixedHeight(23)
+        self.watch_and_spend_points_layout.addWidget(self.points_label)
+        self.watch_and_spend_points_layout.addWidget(self.spend_points_btn)
+        self.watch_and_spend_points_layout.setSpacing(20)
 
-        self.test_button = qtw.QPushButton("Push me")
+        
+        self.header_layout.addLayout(self.watch_and_spend_points_layout)
+        self.header_layout.setSpacing(round(self.width() / 3))
 
-        self.app_layout.addWidget(self.test_button)
+        self.app_layout.addLayout(self.header_layout)
+        self.habits_progress = qtw.QTableView()
+        self.delete_habit = qtw.QPushButton("Stop working on habit")
+        self.delete_habit.setFixedSize(round(self.width() / 3), 23)
+        self.app_layout.addWidget(self.habits_progress)
+        self.app_layout.addWidget(self.delete_habit)
+
+
         self.main_window_widgets = qtw.QWidget()
         self.main_window_widgets.setLayout(self.app_layout)
         self.setCentralWidget(self.main_window_widgets)

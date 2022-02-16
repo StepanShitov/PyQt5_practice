@@ -1,4 +1,3 @@
-import imp
 import json
 
 def upload_users():
