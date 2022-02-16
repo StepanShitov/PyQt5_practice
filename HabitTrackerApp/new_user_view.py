@@ -1,6 +1,20 @@
 from PyQt5 import QtGui as qtg
 from PyQt5 import QtWidgets as qtw
+from PyQt5 import QtCore as qtc
 from controller import create_new_user_controller
+
+class TextEdit(qtw.QTextEdit):
+    def keyPressEvent(self, event):
+        super().keyPressEvent(event)
+        if event.key() >= 16777219 and event.key() <= 16777221:
+            self.enter_press_handler()
+    
+    def enter_press_handler(self):
+        user_input = self.toPlainText().split("\n")
+        cursor = self.textCursor()
+        cursor.movePosition(qtg.QTextCursor.End)
+        self.setPlainText(user_input[0])            
+        self.setTextCursor(cursor)
 
 class NewUserDialog(qtw.QDialog):
     def __init__(self, parent):
@@ -16,10 +30,11 @@ class NewUserDialog(qtw.QDialog):
                                         \nEnter your name here
                                         \n (max lenth 10)""")
         
-        self.name_input = qtw.QTextEdit()
+        self.name_input = TextEdit()
         self.name_input.setFixedHeight(30)
         self.name_input.setWordWrapMode(qtg.QTextOption.NoWrap)
-        self.name_input.textChanged.connect(self.check_text_len)
+        self.name_input.textChanged.connect(self.check_user_input)
+        self.name_input.setFocus()
 
         self.create_new_user_btn = qtw.QPushButton("Create user")
         self.create_new_user_btn.clicked.connect(self.add_new_user)
@@ -29,7 +44,7 @@ class NewUserDialog(qtw.QDialog):
         self.app_layout.addWidget(self.create_new_user_btn)
         self.setLayout(self.app_layout)
 
-    def check_text_len(self):
+    def check_user_input(self):
         user_input = self.name_input.toPlainText()
         if len(user_input) > 10:
             cursor = self.name_input.textCursor()
