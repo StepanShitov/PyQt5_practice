@@ -1,0 +1,16 @@
+{"points": 0,
+"habits":[
+	{"working":[
+		{"active_days":50},
+		{"active_weeks":7},
+		{"last_week":1010111},
+		{"current_week":1120000}]
+	},
+	{"hiking":[
+		{"active_days":50},
+		{"active_weeks":7},
+		{"last_week":1010111},
+		{"current_week":1120000}]
+	}]
+}
+

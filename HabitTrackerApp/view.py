@@ -1,3 +1,4 @@
+import sys
 from PyQt5 import QtGui as qtg
 from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
@@ -16,9 +17,6 @@ class MainWindow(qtw.QMainWindow):
         self.app_layout = qtw.QVBoxLayout()
         self.header_layout = qtw.QHBoxLayout()
         self.watch_and_spend_points_layout = qtw.QVBoxLayout()
-        # self.watch_and_spend_points_layout.addLayout(self.view_points_layout)
-        # self.header_layout.addLayout(self.watch_and_spend_points_layout)
-        # self.app_layout.addLayout(self.header_layout)
         #Main window widgets:
         self.add_habit_btn = qtw.QPushButton("Add new habit")
         self.add_habit_btn.setFixedHeight(23)

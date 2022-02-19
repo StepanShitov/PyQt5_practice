@@ -12,3 +12,6 @@ def create_new_user_controller(user_name):
 
 def get_number_of_users_controller():
     return (model.get_number_of_users())
+
+def setup_user_workspace_controller(user_name):
+    pass
