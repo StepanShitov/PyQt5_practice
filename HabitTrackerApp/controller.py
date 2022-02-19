@@ -2,7 +2,7 @@ import model
 
 def get_users_controller():
     users = model.upload_users()
-    if users == "File not found" or len(users) == 0:
+    if type(users) == str or len(users) == 0:
         return []
     else:
         return users

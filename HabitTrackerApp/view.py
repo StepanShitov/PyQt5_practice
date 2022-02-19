@@ -51,7 +51,7 @@ class MainWindow(qtw.QMainWindow):
         self.update_users_list()
         self.setMenuBar(self.user_menu)
 
-    def add_users(self, user_menu):
+    def add_users(self):
         users = get_users_controller()
         if len(users) > 0:
             for user in users:
@@ -59,13 +59,13 @@ class MainWindow(qtw.QMainWindow):
                 user_action = qtw.QAction(f"&{user_name}", self)
                 user_action.triggered.connect(lambda clicked, val=user_name: 
                                                     self.get_user_stats(val))
-                user_menu.addAction(user_action)
-            return user_menu
+                self.set_user_menu.addAction(user_action)
+            return self.set_user_menu
         else:   
             self.create_new_user()
 
     def update_users_list(self):
-        self.set_user_menu = self.add_users(self.set_user_menu)
+        self.set_user_menu = self.add_users()
         register_new_user_action = qtw.QAction("&New user...", self)
         register_new_user_action.triggered.connect(self.create_new_user)
         self.set_user_menu.addAction(register_new_user_action)

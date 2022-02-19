@@ -1,4 +1,6 @@
-{"points": 0,
+{"points":[
+	{"balance": 0}, 
+	{"current_added": "true"}],
 "habits":[
 	{"working":[
 		{"active_days":50},
