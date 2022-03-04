@@ -1,1 +1,5 @@
-{"users": [{"username": "hel"}]}
+{"users":
+[{"username": "new_user2"},
+	{"username": "new_user3"},
+	{"username": "Ivan"}]
+}

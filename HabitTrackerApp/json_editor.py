@@ -31,12 +31,10 @@ def add_new_user(user_name, users):
             return("")
 
 def setup_workspace(user_name):
+    #current_added field is for completed week, if false - we need to +1 point and change to true
     initial_info = {"points":[{"balance": 0}, {"current_added": "true"}], 
                     "habits": []}
-    initial_user_activity = json.dumps(initial_info)
-    print(type(initial_user_activity))
-    # with open(f"{user_name}_logs.json", "w") as new_user_log:
-    #     print())
-
-    # print(initial_user_activity)
+    initial_user_activity = json.dumps(initial_info, indent=1, sort_keys=True)
+    with open(f"users_logs/{user_name}_logs.json", "w") as new_user_log:
+        print(initial_user_activity, file=new_user_log)
     return("")

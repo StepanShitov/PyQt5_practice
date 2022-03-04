@@ -4,7 +4,8 @@ from PyQt5 import QtWidgets as qtw
 from PyQt5 import QtCore as qtc
 
 from new_user_view import NewUserDialog
-from controller import get_users_controller, get_number_of_users_controller
+from controller import (get_users_controller, get_number_of_users_controller, 
+                        get_user_progress_controller)
 
 class MainWindow(qtw.QMainWindow):
     def __init__(self):
@@ -83,6 +84,7 @@ class MainWindow(qtw.QMainWindow):
 
     def get_user_stats(self, user_name):
         print(f"Getting user info for {user_name}")
+        get_user_progress_controller(user_name)
 
 app = qtw.QApplication([])
 app_window = MainWindow()
