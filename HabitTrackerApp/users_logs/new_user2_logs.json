@@ -1,11 +1,10 @@
 {
- "habits": [],
- "points": [
-  {
-   "balance": 0
-  },
-  {
-   "current_added": "true"
+ "habits": {
+   "crawling": "0011011"
+ },
+ "points": {
+    "balance": 0
+    ,
+    "previous_added": false
   }
- ]
 }

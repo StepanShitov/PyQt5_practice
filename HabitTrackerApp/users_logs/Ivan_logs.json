@@ -1,11 +1,10 @@
 {
- "habits": [],
- "points": [
-  {
-   "balance": 0
-  },
-  {
-   "current_added": "true"
-  }
- ]
+ "habits": {
+     "skiing": "1110111",
+     "running": "1011111"
+ },
+ "points": {
+   "balance": 1,
+   "previous_added": false
+ }
 }

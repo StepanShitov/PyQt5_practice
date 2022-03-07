@@ -84,7 +84,8 @@ class MainWindow(qtw.QMainWindow):
 
     def get_user_stats(self, user_name):
         print(f"Getting user info for {user_name}")
-        get_user_progress_controller(user_name)
+        if get_user_progress_controller(user_name) != "":
+            print("<User>_logs.json not found")
 
 app = qtw.QApplication([])
 app_window = MainWindow()

@@ -1,11 +1,8 @@
 {
- "habits": [],
- "points": [
-  {
-   "balance": 0
-  },
-  {
-   "current_added": "true"
+ "habits": {},
+ "points": {
+    "balance": 0
+    ,
+    "previous_added": true
   }
- ]
 }
